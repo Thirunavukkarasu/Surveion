@@ -1,0 +1,39 @@
+<div class="container">
+	<div class="col-md-6">
+		<div class="panel panel-primary">
+		   <div class="panel-heading" contenteditable="true">Sample Survey</div>
+		   <div class="panel-body">
+			   <form name="surveyform"> 
+				  <div class="form-group">
+				   <label for="employeeName">Employee Name</label>
+					<select class="form-control" ng-model="selectedEmployeeName" ng-options="name for name in employeeNames" required ng-minlength="6">
+					</select>
+				   </div>
+				  <div class="form-group has-feedback">
+				    <label for="surveyItem" contenteditable="true">Survey Item</label>
+				    <input type="text" class="form-control" ng-model="surveyItem" placeholder="Survey Item" required ng-minlength="6">
+				  </div>  
+				  <button type="submit" class="btn btn-primary" ng-disabled="surveyform.$invalid" ng-click="surveyform.$valid && onClickSubmit(selectedEmployeeName,surveyItem)">Submit</button>
+				  <button type="submit" class="btn btn-warning" ng-click="onClickLoadFromJSON()">Load JSON</button>
+				   <button type="submit" class="btn btn-success" ng-click="onClickExportAsCSV()">Export As CSV</button>
+			   </form>
+		  </div> 
+		</div>
+    </div>
+    <div class="col-md-6">
+		<table class="table table-bordered table-striped" ng-show="surveyResults">
+		  <thead><tr>
+		    <th>Sno</th>
+		  	<th>Employee Name</th>
+		    <th contenteditable="true">Survey Item</th>
+		  </tr></thead>		
+		  <tbody>	
+			  <tr ng-repeat="results in surveyResults">
+			    <td>{{$index+1}}</td>
+			    <td>{{results.employeeName}}</td>
+			    <td>{{results.surveyItem}}</td>
+			  </tr>
+		  </tbody>
+		</table>  
+    </div>
+</div>
